@@ -31,7 +31,7 @@ class Search extends Component {
     const mappedSearchResults = searchResults.map(result => {
       return (
         <div key={result.imdbID}>
-          <SearchCard poster={result.Poster} title={result.Title} year={result.Year}/>
+          <SearchCard imdbID={result.imdbID} poster={result.Poster} title={result.Title} year={result.Year}/>
         </div>
       );
     });

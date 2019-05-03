@@ -2,10 +2,11 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import axios from 'axios'
+// import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+// import Icon from '@material-ui/core/Icon';
+// import Typography from '@material-ui/core/Typography';
 
 
 const styles = theme => ({
@@ -13,7 +14,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     width: '15rem',
-    height: '8rem',
+    height: '15rem',
     margin: '2rem'
   },
   details: {
@@ -34,6 +35,10 @@ function SearchCards(props) {
     // console.log(333,props)
   });
 
+  function addToList(){
+    axios.post(`/api/addToList/${props.imdbID}`)
+  }
+
   return (
     <Card className={classes.card}>
       <div className={classes.details}>
@@ -44,7 +49,7 @@ function SearchCards(props) {
           {props.year}
           </p>
 
-        <button>add to list</button>
+        <button onClick={() => addToList()} >add to list</button>
     
       </div>
       <CardMedia
