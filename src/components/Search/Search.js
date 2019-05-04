@@ -38,6 +38,7 @@ class Search extends Component {
 
     return (
       <div>
+        <button onClick={() => this.props.history.push('/')} >Go To List</button>
         <h1>search area</h1>
         <input
           placeholder="tv or movie name"

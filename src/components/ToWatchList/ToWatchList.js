@@ -2,7 +2,7 @@ import React, {useEffect, useState } from 'react';
 import axios from 'axios';
 import ToWatchCard from '../ToWatchCard/ToWatchCard'
 
-function ToWatchList() {
+function ToWatchList(props) {
     const [data, setData] = useState([])
 
     useEffect(() => {
@@ -23,10 +23,13 @@ function ToWatchList() {
             </div>
 
         ))
-    
+     
+
 
     return (
         <div>
+            <button onClick={() => props.history.push('/search')} >Search Titles</button>
+            <h2>Titles To Watch</h2>
             {mappedList}
         </div>
     )
