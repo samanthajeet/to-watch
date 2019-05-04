@@ -1,5 +1,6 @@
 import React, {useEffect, useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import ToWatchCard from '../ToWatchCard/ToWatchCard'
 
 function ToWatchList() {
     const [data, setData] = useState([])
@@ -16,7 +17,9 @@ function ToWatchList() {
 
     let mappedList = data.map( item => (
             <div key={item.id}>
-                <p> {item.imdbid} </p>
+            <ToWatchCard
+                imdbid={item.imdbid}
+            />
             </div>
 
         ))
