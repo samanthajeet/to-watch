@@ -46,6 +46,12 @@ function ToWatchCards(props) {
     setPoster(response.data.Poster)
   }
 
+  function removeItem(){
+    axios.delete(`/api/deleteItem/${props.id}`).then(
+      console.log('deleted')
+    )
+  }
+
 
   return (
     <Card className={classes.card}>
@@ -57,7 +63,6 @@ function ToWatchCards(props) {
           {props.year}
           </p>
 
-        {/* <button onClick={() => addToList()} >add to list</button> */}
     
       </div>
       <CardMedia
@@ -65,6 +70,7 @@ function ToWatchCards(props) {
         image={poster}
         title="Live from space album cover"
       />
+        <button onClick={() => removeItem()}>delete</button>
     </Card>
   );
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import {withRouter} from 'react-router';
 import SearchCard from "../SearchCard/SearchCard";
 
 class Search extends Component {
@@ -31,7 +32,7 @@ class Search extends Component {
     const mappedSearchResults = searchResults.map(result => {
       return (
         <div key={result.imdbID}>
-          <SearchCard imdbID={result.imdbID} poster={result.Poster} title={result.Title} year={result.Year}/>
+          <SearchCard imdbID={result.imdbID} poster={result.Poster} title={result.Title} year={result.Year} history={this.props.history} />
         </div>
       );
     });
@@ -51,4 +52,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default withRouter(Search);

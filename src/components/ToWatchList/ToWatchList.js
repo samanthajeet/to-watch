@@ -19,6 +19,7 @@ function ToWatchList(props) {
             <div key={item.id}>
             <ToWatchCard
                 imdbid={item.imdbid}
+                id={item.id}
             />
             </div>
 
