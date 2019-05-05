@@ -22,3 +22,4 @@ massive(CONNECTION_STRING).then( db => {
 const ctrl = require('./controller')
 app.get(`/api/getList`, ctrl.getList)
 app.post(`/api/addToList/:imdbID`, ctrl.addToList)
+app.delete(`/api/deleteItem/:id`, ctrl.deleteItem)

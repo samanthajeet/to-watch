@@ -35,8 +35,9 @@ function SearchCards(props) {
     // console.log(333,props)
   });
 
-  function addToList(){
-    axios.post(`/api/addToList/${props.imdbID}`)
+  const addToList = async() => {
+    await axios.post(`/api/addToList/${props.imdbID}`)
+    props.history.push('/')
   }
 
   return (
