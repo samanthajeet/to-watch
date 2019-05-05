@@ -22,7 +22,6 @@ class Search extends Component {
         `http://www.omdbapi.com/?apikey=${OMDBapi}&s=${this.state.userInput}`
       )
       .then(response => {
-        console.log(222, response.data.Search);
         this.setState({ searchResults: response.data.Search });
       });
   }
