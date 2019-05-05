@@ -16,15 +16,18 @@ const styles = theme => ({
   card: {
     display: "flex",
     justifyContent: "space-between",
+    // alignItems: 'flex-start',
     width: "20rem",
-    height: "5rem",
-    margin: "2rem"
+    height: "8rem",
+    margin: "1rem"
   },
   details: {
     display: "flex",
     flexDirection: "column",
     width: "50%",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: 'center',
+    padding: '0.5rem'
   },
   cover: {
     width: "50%"
@@ -63,6 +66,13 @@ function ToWatchCards(props) {
 
   return (
     <Card className={classes.card}>
+      <IconButton
+        aria-owns={anchorEl ? "simple-menu" : undefined}
+        aria-haspopup="true"
+        onClick={(e) => setanchorEl(e.currentTarget)}
+      >
+        <MoreVertIcon />
+      </IconButton>
       <div className={classes.details}>
         <h4>{title}</h4>
         <p>{props.year}</p>
@@ -72,13 +82,6 @@ function ToWatchCards(props) {
         image={poster}
         title="Live from space album cover"
       />
-      <IconButton
-        aria-owns={anchorEl ? "simple-menu" : undefined}
-        aria-haspopup="true"
-        onClick={(e) => setanchorEl(e.currentTarget)}
-      >
-        <MoreVertIcon />
-      </IconButton>
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}

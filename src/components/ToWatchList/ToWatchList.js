@@ -1,32 +1,47 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Button from '@material-ui/core/Button';
-
-
-
 
 import ToWatchCard from "../ToWatchCard/ToWatchCard";
 
 const ToWatchContainer = styled.div`
-  border: 2px solid red;
   display: flex;
   width: 100%;
   height: 100%;
   justify-content: space-around;
 
-  h1{
-    font-family: 'Josefin Slab', serif;
+  h1 {
+    font-family: "Josefin Slab", serif;
   }
-  h2{
-    font-family: 'Josefin Slab', serif;
+  h2 {
+    font-family: "Josefin Slab", serif;
   }
 `;
 
-
-
 const ToWatchListContainer = styled.div`
-    width: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2{
+    font-family: 'Open Sans', sans-serif;  
+    font-size: 2.5rem;
+    margin: 0.75rem;
+    font-weight: 400
+  }
+`;
+
+const ToWatchCards = styled.div`
+  width: 100%;
+  height: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 function ToWatchList(props) {
@@ -49,17 +64,9 @@ function ToWatchList(props) {
 
   return (
     <ToWatchContainer>
-      <div>
-          <h1>
-              You have 20 titles to watch
-          </h1>
-        <Button variant="outlined" onClick={() => props.history.push("/search")}>
-        Add to list
-      </Button>
-      </div>
       <ToWatchListContainer>
-        <h2>Your Titles</h2>
-        {mappedList}
+        <h2>Things You Need to Watch</h2>
+        <ToWatchCards>{mappedList}</ToWatchCards>
       </ToWatchListContainer>
     </ToWatchContainer>
   );
