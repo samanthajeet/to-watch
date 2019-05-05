@@ -29,7 +29,7 @@ const styles = theme => ({
 });
 
 function SearchCards(props) {
-  const { classes, theme } = props;
+  const { classes } = props;
 
   useEffect(() => {
     // console.log(333,props)

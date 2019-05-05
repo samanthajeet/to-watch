@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, memo} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -29,14 +29,14 @@ const styles = theme => ({
 });
 
 function ToWatchCards(props) {
-  const { classes, theme } = props;
+  const { classes} = props;
 
   const [title, setTitle] = useState('');
   const [poster, setPoster] = useState('')
 
   useEffect(() => {
-    getInfo()
-  },[]);
+    getInfo();
+  });
 
 
   const getInfo = async() =>{
@@ -47,9 +47,7 @@ function ToWatchCards(props) {
   }
 
   function removeItem(){
-    axios.delete(`/api/deleteItem/${props.id}`).then(
-      console.log('deleted')
-    )
+    axios.delete(`/api/deleteItem/${props.id}`)
   }
 
 
@@ -80,4 +78,4 @@ ToWatchCards.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ToWatchCards);
+export default memo(withStyles(styles, { withTheme: true })(ToWatchCards));

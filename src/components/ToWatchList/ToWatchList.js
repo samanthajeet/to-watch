@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import ToWatchCard from '../ToWatchCard/ToWatchCard'
 
@@ -11,7 +11,6 @@ function ToWatchList(props) {
     
     const getList = async () => {
         let response = await axios.get(`/api/getList`);
-        console.log(response.data)
         await setData(response.data)
     } 
 
