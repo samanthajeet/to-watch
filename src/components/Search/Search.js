@@ -3,26 +3,27 @@ import axios from "axios";
 import { withRouter } from "react-router";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import SearchCard from "../SearchCard/SearchCard";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const SearchArea = styled.div`
-  /* border: 2px solid red; */
+  
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  align-items: flex-start;
 `;
 
 const SearchInput = styled.div`
-  width: 100%;
+  width: 25%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   input {
-    width: 80%;
-    height: 6rem;
-    font-size: 5rem;
+    width: 100%;
+    font-size: 2rem;
     font-family: "Open Sans", sans-serif;
     padding-left: 0.5rem;
     margin-bottom: 0.25rem;
@@ -37,7 +38,7 @@ const SearchInput = styled.div`
       width: 5%;
     }
     100% {
-      width: 80%;
+      width: 100%;
     }
   }
 
@@ -53,8 +54,8 @@ const SearchInput = styled.div`
 const SearchResults = styled.div`
   display: flex;
   flex-wrap: wrap;
-  height: 75%;
-  width: 100%;
+  height: 100%;
+  width: 75%;
   overflow-y: auto;
   overflow-x: hidden;
   justify-content: center;
@@ -68,7 +69,8 @@ class Search extends Component {
   state = {
     userInput: "",
     movieSearchResults: [],
-    bookSearchResults: []
+    bookSearchResults: [],
+    value: 'all'
   };
 
   handleChange(prop, val) {
@@ -76,6 +78,7 @@ class Search extends Component {
       [prop]: val
     });
   }
+
 
   search(){
     this.getMovie();
@@ -112,8 +115,10 @@ class Search extends Component {
       });
   }
 
+
+
   render() {
-    // const { classes } = this.props;
+    const { classes } = this.props;
     const { movieSearchResults } = this.state;
     const { bookSearchResults } = this.state
     const mappedSearchResults = movieSearchResults.map(result => {
@@ -160,10 +165,48 @@ class Search extends Component {
               search
             </Button>
           </SearchBtn>
+          <RadioGroup
+            aria-label="gender"
+            name="gender2"
+            value={this.state.value}
+            onChange={e => this.handleRadioChange("value", e.target.value)}
+            
+          >
+            <FormControlLabel
+              value="all"
+              control={<Radio color="primary" />}
+              label="All"
+              labelPlacement="start"
+            />
+            <FormControlLabel
+              value="movies"
+              control={<Radio color="primary" />}
+              label="Movies"
+              labelPlacement="start"
+            />
+            <FormControlLabel
+              value="books"
+              control={<Radio color="primary" />}
+              label="Books"
+              labelPlacement="start"
+            />
+
+          </RadioGroup>
         </SearchInput>
         <SearchResults>
-        {mappedSearchResults}
-        {mappedBookResults}
+          {this.state.value === 'all' ? (
+            <>
+              {mappedSearchResults}
+              {mappedBookResults}
+            </>
+          ) : (
+            this.state.value === 'movies' ? (
+              {mappedSearchResults}
+            ):
+            (
+              {mappedBookResults}
+            )
+          )}
         </SearchResults>
       </SearchArea>
     );
