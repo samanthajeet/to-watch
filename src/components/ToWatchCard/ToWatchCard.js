@@ -7,6 +7,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import Fade from '@material-ui/core/Fade';
 // import CardContent from '@material-ui/core/CardContent';
 import CardMedia from "@material-ui/core/CardMedia";
 // import Icon from '@material-ui/core/Icon';
@@ -65,6 +66,7 @@ function ToWatchCards(props) {
   };
 
   return (
+    <Fade in={true}>
     <Card className={classes.card}>
       <IconButton
         aria-owns={anchorEl ? "simple-menu" : undefined}
@@ -93,6 +95,7 @@ function ToWatchCards(props) {
         <MenuItem onClick={() => removeItem()}>delete</MenuItem>
       </Menu>
     </Card>
+    </Fade>
   );
 }
 

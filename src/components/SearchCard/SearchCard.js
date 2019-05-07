@@ -10,13 +10,15 @@ import CardMedia from "@material-ui/core/CardMedia";
 import styled from "styled-components";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import Fade from '@material-ui/core/Fade';
+
 
 const styles = theme => ({
   card: {
     display: "flex",
     justifyContent: "space-between",
-    width: "15rem",
-    height: "10rem",
+    width: "20rem",
+    height: "15rem",
     margin: "2rem"
   },
   details: {
@@ -63,6 +65,7 @@ function SearchCards(props) {
   };
 
   return (
+    <Fade in={true}>
     <Card className={classes.card}>
       <div className={classes.details}>
         <CardText>
@@ -80,6 +83,7 @@ function SearchCards(props) {
         title="Live from space album cover"
       />
     </Card>
+    </Fade>
   );
 }
 
