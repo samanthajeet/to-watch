@@ -1,24 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Snackbar from '@material-ui/core/Snackbar';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import axios from "axios";
-// import CardContent from '@material-ui/core/CardContent';
 import CardMedia from "@material-ui/core/CardMedia";
-// import Icon from '@material-ui/core/Icon';
-// import Typography from '@material-ui/core/Typography';
 import styled from "styled-components";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Fade from '@material-ui/core/Fade';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Button from '@material-ui/core/Button';
 
 
 const styles = theme => ({
   card: {
     display: "flex",
     justifyContent: "space-between",
-    width: "20rem",
-    height: "15rem",
+    width: "18rem",
+    height: "12rem",
     margin: "2rem"
   },
   details: {
@@ -55,16 +56,30 @@ const CardText = styled.div`
 function SearchCards(props) {
   const { classes } = props;
 
+  const [open, setOpen] = useState(false)
+
   useEffect(() => {
     // console.log(333,props)
-  });
+  },[]);
+
+  function handleClick(){
+    setOpen(true)
+  }
+
+  const handleClose = (event, reason) => {
+    if ( reason === 'clickaway'){
+      return
+    }
+    setOpen(false)
+  }
 
   const addToList = async () => {
     await axios.post(`/api/addToList/${props.imdbID}`);
-    props.history.push("/");
+    handleClick();
   };
 
   return (
+    <>
     <Fade in={true}>
     <Card className={classes.card}>
       <div className={classes.details}>
@@ -83,7 +98,35 @@ function SearchCards(props) {
         title="Live from space album cover"
       />
     </Card>
+
+
+
     </Fade>
+    <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{props.title} added to your list</span>}
+          action={[
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              className={classes.close}
+              onClick={handleClose}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
+    </>
   );
 }
 
